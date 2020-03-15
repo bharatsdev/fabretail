@@ -1,5 +1,10 @@
 # Retails Process
 
 ## Tech stack
-## Test
+  - Java 8
+  - Spring boot
+  - Maven
+  
+
+## Testing
 ## TODO
