@@ -2,8 +2,8 @@ package com.fabretails.bill;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import com.fabretails.customers.Customer;
 import com.fabretails.customers.EmployeeCustomer;
@@ -16,7 +16,7 @@ public class CalculateDiscountTest {
 	Customer customer;
 	BillAmount billAmount;
 
-	@BeforeEach
+	@Before
 	public void setUp() {
 
 	}

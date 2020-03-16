@@ -22,6 +22,7 @@ This is a retails website repository. Which can be used for calculating the net 
 ## Component Testing
 
 	1- Execute test , we can test by executing all the test one by one 
+	3- Run AllTests.java >Run as> Junit test
 	2- mvn clean install  : this will execute all the test and create jar
 	
 	
@@ -30,4 +31,5 @@ This is a retails website repository. Which can be used for calculating the net 
 	Integration Test
 	UML Diagram 
 	LLD
-	Create bill amount as rest endpoint processDiscountOnBill 
+	Create bill amount as rest endpoint processDiscountOnBill() 
+	Logger 

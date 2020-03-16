@@ -5,8 +5,8 @@ package com.fabretails.customers.discount;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author b.singh
@@ -18,8 +18,8 @@ public class AffiliateUserDiscountTest {
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@BeforeEach
-	void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		affiliateUserDiscount = new AffiliateUserDiscount();
 	}
 
@@ -28,7 +28,7 @@ public class AffiliateUserDiscountTest {
 	 * {@link com.fabretails.customers.discount.AffiliateUserDiscount#AffiliateUserDiscount()}.
 	 */
 	@Test
-	void testAffiliateUserDiscount() {
+	public void testAffiliateUserDiscount() {
 		assertEquals(new Double(900.0), new Double(affiliateUserDiscount.calculateDiscount(1000)));
 
 	}

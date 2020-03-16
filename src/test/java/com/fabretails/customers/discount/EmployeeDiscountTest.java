@@ -2,14 +2,14 @@ package com.fabretails.customers.discount;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 public class EmployeeDiscountTest {
 
 	EmployeeDiscount employeeDiscount;
 
-	@BeforeEach
+	@Before
 	public void setup() {
 		employeeDiscount = new EmployeeDiscount();
 	}

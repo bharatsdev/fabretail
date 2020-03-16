@@ -2,8 +2,8 @@ package com.fabretails.bill;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import com.fabretails.customers.AffilateCustomer;
 import com.fabretails.customers.Customer;
@@ -16,8 +16,8 @@ import com.fabretails.utils.ProductType;
 public class BillAmountTest {
 	BillAmount bill;
 
-	@BeforeEach
-	void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		Customer customer = new Customer();
 		bill = new BillAmount(customer);
 	}
