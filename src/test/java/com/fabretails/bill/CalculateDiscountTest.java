@@ -2,7 +2,7 @@ package com.fabretails.bill;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.fabretails.customers.Customer;
@@ -16,7 +16,7 @@ public class CalculateDiscountTest {
 	Customer customer;
 	BillAmount billAmount;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 
 	}
@@ -47,7 +47,7 @@ public class CalculateDiscountTest {
 		billAmount.addProductCatalog(g1);
 		billAmount.addProductCatalog(g2);
 
-		calculateDiscount.calculateNetAmountOnBill(billAmount); 
+		calculateDiscount.calculateNetAmountOnBill(billAmount);
 		assertEquals(new Double(billAmount.getNetAmount()), new Double(1000.00));
 		assertEquals(new Double(billAmount.getAmountAfterDiscount()), new Double(665.00));
 
