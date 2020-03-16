@@ -39,10 +39,10 @@ public class CalculateDiscount {
 	}
 
 	@SuppressWarnings("unused")
-	Discount getCustomerBasedDiscount(Customer c) {
+	Discount getCustomerBasedDiscount(Customer customer) {
 		DiscountByPercentage discountPercentage = null;
-		if (c instanceof Customer) {
-			if (c.getTotalYears() > 2) {
+		if (customer instanceof Customer) {
+			if (customer.getTotalYears() > 2) {
 				LoyalCustomerDiscount loyalCustomerDiscount = new LoyalCustomerDiscount();
 
 				if (discountPercentage == null) {
@@ -55,11 +55,11 @@ public class CalculateDiscount {
 				discountPercentage = new ZeroPercentageDiscount();
 			}
 		}
-		if (c instanceof EmployeeCustomer) {
+		if (customer instanceof EmployeeCustomer) {
 			discountPercentage = new EmployeeDiscount();
 		}
 
-		if (c instanceof AffilateCustomer) {
+		if (customer instanceof AffilateCustomer) {
 			AffiliateCustomerDiscount affiliateUserDiscount = new AffiliateCustomerDiscount();
 			if (discountPercentage == null) {
 				discountPercentage = affiliateUserDiscount;
