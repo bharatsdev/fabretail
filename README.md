@@ -4,13 +4,15 @@
 This is a retails website repository. Which can be used for calculating the net bill amount. 
 
 
-## Technology Stack
+## Tools & Technology Stack
 
 	  Java 8
 	  Spring boot
 	  Maven
 	  lombok
-	  Junit  
+	  Junit
+	  Eclipse  
+	  
 
 ## Component 
 	Product : This is for product category like grocery or non-grocery

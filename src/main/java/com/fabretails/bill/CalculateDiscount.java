@@ -3,6 +3,8 @@
  */
 package com.fabretails.bill;
 
+import java.util.stream.Collectors;
+
 import com.fabretails.customers.AffilateCustomer;
 import com.fabretails.customers.Customer;
 import com.fabretails.customers.EmployeeCustomer;
@@ -11,12 +13,14 @@ import com.fabretails.customers.discount.EmployeeDiscount;
 import com.fabretails.customers.discount.LoyalCustomerDiscount;
 import com.fabretails.customers.discount.ZeroPercentageDiscount;
 import com.fabretails.discounts.Discount;
-import com.fabretails.discounts.impl.AmountBasedDiscountImpl;
-import com.fabretails.discounts.impl.DiscountPercentageImpl;
+import com.fabretails.discounts.impl.DiscountByAmount;
+import com.fabretails.discounts.impl.DiscountByPercentage;
 import com.fabretails.products.Product;
 import com.fabretails.products.impl.NonGrocery;
 
 /**
+ * This class will help in calculating the final bill amount
+ * 
  * @author b.singh
  *
  */
@@ -27,6 +31,7 @@ public class CalculateDiscount {
 
 	private static class SingletonInstance {
 		private static final CalculateDiscount INSTANCE = new CalculateDiscount();
+
 	}
 
 	public static CalculateDiscount getInstance() {
@@ -35,15 +40,15 @@ public class CalculateDiscount {
 
 	@SuppressWarnings("unused")
 	Discount getCustomerBasedDiscount(Customer c) {
-		 DiscountPercentageImpl discountPercentage = null;
+		DiscountByPercentage discountPercentage = null;
 		if (c instanceof Customer) {
-
-			if (c.getTotalNoOfYears() > 2) {
+			if (c.getTotalYears() > 2) {
 				LoyalCustomerDiscount loyalCustomerDiscount = new LoyalCustomerDiscount();
 
 				if (discountPercentage == null) {
 					discountPercentage = loyalCustomerDiscount;
-				} else if (loyalCustomerDiscount.getDiscountPercentage() > discountPercentage.getDiscountPercentage()) {
+				} else if (loyalCustomerDiscount.getDiscountByPercentage() > discountPercentage
+						.getDiscountByPercentage()) {
 					discountPercentage = loyalCustomerDiscount;
 				}
 			} else {
@@ -58,7 +63,7 @@ public class CalculateDiscount {
 			AffiliateUserDiscount affiliateUserDiscount = new AffiliateUserDiscount();
 			if (discountPercentage == null) {
 				discountPercentage = affiliateUserDiscount;
-			} else if (affiliateUserDiscount.getDiscountPercentage() > discountPercentage.getDiscountPercentage()) {
+			} else if (affiliateUserDiscount.getDiscountByPercentage() > discountPercentage.getDiscountByPercentage()) {
 				discountPercentage = affiliateUserDiscount;
 			}
 
@@ -66,25 +71,32 @@ public class CalculateDiscount {
 		return discountPercentage;
 	}
 
-	public double processFinalAmountOnBill(Bill bill) {
-
+	public double calculateNetAmountOnBill(BillAmount bill) {
 		proceessBillTotal(bill);
-
 		applyPercentageDiscount(bill);
 		applyDiscountOverFinalBill(bill);
-
 		return 0;
 	}
 
-	private void proceessBillTotal(Bill bill) {
-		double netBillAmount = 0;
-		for (Product product : bill.getProductCataglogs()) {
-			netBillAmount += product.getProductAmount();
-		}
-		bill.setTotalAmount(netBillAmount);
+	/**
+	 * Calculate total bill amount of order
+	 * 
+	 * @param bill
+	 */
+
+	private void proceessBillTotal(BillAmount bill) {
+		double netBillAmount = bill.getProductCataglogs().stream()
+				.collect(Collectors.summingDouble(Product::getProductAmount));
+		bill.setNetAmount(netBillAmount);
 	}
 
-	private void applyPercentageDiscount(Bill bill) {
+	/**
+	 * This method will check the type of product and calculate discount amount like
+	 * grocery don't have any discount
+	 * 
+	 * @param bill
+	 */
+	private void applyPercentageDiscount(BillAmount bill) {
 		Discount discount = getCustomerBasedDiscount(bill.getCustomer());
 		double discountedBill = 0;
 		for (Product product : bill.getProductCataglogs()) {
@@ -98,9 +110,9 @@ public class CalculateDiscount {
 
 	}
 
-	public void applyDiscountOverFinalBill(Bill bill) {
+	public void applyDiscountOverFinalBill(BillAmount bill) {
 
-		Discount discount = new AmountBasedDiscountImpl();
+		Discount discount = new DiscountByAmount();
 		bill.setAmountAfterDiscount(discount.calculateDiscount(bill.getAmountAfterDiscount()));
 
 	}

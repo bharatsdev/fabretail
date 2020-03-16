@@ -6,17 +6,17 @@ import java.util.List;
 import com.fabretails.customers.Customer;
 import com.fabretails.products.Product;
 
-public class Bill {
+public class BillAmount {
 	private List<Product> productCataglogs = new ArrayList<>();
 
 	CalculateDiscount calculateDiscount;
 
 	private Customer customer;
 
-	private double totalAmount;
+	private double netAmount;
 	private double amountAfterDiscount;
 
-	public Bill(Customer customer) {
+	public BillAmount(Customer customer) {
 		super();
 		this.customer = customer;
 		this.calculateDiscount = CalculateDiscount.getInstance();
@@ -27,7 +27,7 @@ public class Bill {
 	}
 
 	public void processDiscountOnBill() {
-		calculateDiscount.processFinalAmountOnBill(this);
+		calculateDiscount.calculateNetAmountOnBill(this);
 	}
 
 	public List<Product> getProductCataglogs() {
@@ -54,12 +54,12 @@ public class Bill {
 		this.customer = customer;
 	}
 
-	public double getTotalAmount() {
-		return totalAmount;
+	public double getNetAmount() {
+		return netAmount;
 	}
 
-	public void setTotalAmount(double totalAmount) {
-		this.totalAmount = totalAmount;
+	public void setNetAmount(double netAmount) {
+		this.netAmount = netAmount;
 	}
 
 	public double getAmountAfterDiscount() {
