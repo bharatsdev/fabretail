@@ -5,10 +5,10 @@ package com.fabretails.discounts.impl;
 
 import com.fabretails.discounts.Discount;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
+ * This Class help in calculation of bill amount after giving the amount
+ * discount on bill
+ * 
  * @author b.singh
  *
  */
@@ -16,6 +16,9 @@ public class DiscountByAmount implements Discount {
 
 	private double discountAmount;
 
+	/**
+	 * Return bill amount after giving fix amount disccount of bill
+	 */
 	@Override
 	public double calculateDiscount(double amount) {
 		this.discountAmount = (((amount - (amount % 100)) / 100)) * 5;

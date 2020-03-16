@@ -18,6 +18,9 @@ public class DiscountByPercentage implements Discount {
 		System.out.println(this.discountByPercentage);
 	}
 
+	/**
+	 * add percentage discount on final bill and return net bill amount
+	 */
 	@Override
 	public double calculateDiscount(double amount) {
 		return amount -= (amount * discountByPercentage);

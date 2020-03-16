@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import com.fabretails.customers.AffilateCustomer;
 import com.fabretails.customers.Customer;
 import com.fabretails.customers.EmployeeCustomer;
-import com.fabretails.customers.discount.AffiliateUserDiscount;
+import com.fabretails.customers.discount.AffiliateCustomerDiscount;
 import com.fabretails.customers.discount.EmployeeDiscount;
 import com.fabretails.customers.discount.LoyalCustomerDiscount;
 import com.fabretails.customers.discount.ZeroPercentageDiscount;
@@ -60,7 +60,7 @@ public class CalculateDiscount {
 		}
 
 		if (c instanceof AffilateCustomer) {
-			AffiliateUserDiscount affiliateUserDiscount = new AffiliateUserDiscount();
+			AffiliateCustomerDiscount affiliateUserDiscount = new AffiliateCustomerDiscount();
 			if (discountPercentage == null) {
 				discountPercentage = affiliateUserDiscount;
 			} else if (affiliateUserDiscount.getDiscountByPercentage() > discountPercentage.getDiscountByPercentage()) {

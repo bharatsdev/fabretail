@@ -13,14 +13,14 @@ import org.junit.Test;
  *
  */
 public class AffiliateUserDiscountTest {
-	AffiliateUserDiscount affiliateUserDiscount;
+	AffiliateCustomerDiscount affiliateCustomerDiscount;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		affiliateUserDiscount = new AffiliateUserDiscount();
+		affiliateCustomerDiscount = new AffiliateCustomerDiscount();
 	}
 
 	/**
@@ -29,7 +29,7 @@ public class AffiliateUserDiscountTest {
 	 */
 	@Test
 	public void testAffiliateUserDiscount() {
-		assertEquals(new Double(900.0), new Double(affiliateUserDiscount.calculateDiscount(1000)));
+		assertEquals(new Double(900.0), new Double(affiliateCustomerDiscount.calculateDiscount(1000)));
 
 	}
 
