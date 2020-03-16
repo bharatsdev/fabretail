@@ -1,9 +1,11 @@
 /**
  * 
  */
-package com.fabretails.users;
+package com.fabretails.customers;
 
 /**
+ * This class will work as Affilate customer.
+ * 
  * @author b.singh
  *
  */

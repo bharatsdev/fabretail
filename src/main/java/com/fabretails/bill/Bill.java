@@ -3,11 +3,11 @@ package com.fabretails.bill;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fabretails.item.Item;
-import com.fabretails.users.Customer;
+import com.fabretails.customers.Customer;
+import com.fabretails.products.Product;
 
-public class FinalBill {
-	private List<Item> itemCatalogs = new ArrayList<>();
+public class Bill {
+	private List<Product> productCataglogs = new ArrayList<>();
 
 	CalculateDiscount calculateDiscount;
 
@@ -16,26 +16,26 @@ public class FinalBill {
 	private double totalAmount;
 	private double amountAfterDiscount;
 
-	public FinalBill(Customer customer) {
+	public Bill(Customer customer) {
 		super();
 		this.customer = customer;
 		this.calculateDiscount = CalculateDiscount.getInstance();
 	}
 
-	public void addItemCatalog(Item item) {
-		itemCatalogs.add(item);
+	public void addProductCatalog(Product product) {
+		productCataglogs.add(product);
 	}
 
 	public void processDiscountOnBill() {
 		calculateDiscount.processFinalAmountOnBill(this);
 	}
 
-	public List<Item> getItemCatalogs() {
-		return itemCatalogs;
+	public List<Product> getProductCataglogs() {
+		return productCataglogs;
 	}
 
-	public void setItemCatalogs(List<Item> itemCatalogs) {
-		this.itemCatalogs = itemCatalogs;
+	public void setProductCataglogs(List<Product> productCataglogs) {
+		this.productCataglogs = productCataglogs;
 	}
 
 	public CalculateDiscount getCalculateDiscount() {

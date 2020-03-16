@@ -1,18 +1,31 @@
-package com.fabretails.users;
+package com.fabretails.customers;
 
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * This class will handle all he customer type
+ * 
+ * @author b.singh
+ *
+ */
 public class Customer {
+	// Customer Registration date
 	LocalDate customerRegistrationDate;
 
 	public Customer() {
 		this.customerRegistrationDate = LocalDate.now();
 	}
 
-	public int getTotalNoOfYears() {
+	/**
+	 * Get Total number of years, which customer spend with retails store. It will
+	 * used for checking the loyal customer
+	 * 
+	 * @return
+	 */
+	public int getTotalYears() {
 		return LocalDate.now().getYear() - this.customerRegistrationDate.getYear();
 
 	}

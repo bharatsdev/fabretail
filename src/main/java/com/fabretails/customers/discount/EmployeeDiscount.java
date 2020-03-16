@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.fabretails.users.discount;
+package com.fabretails.customers.discount;
 
-import com.fabretails.discounttype.impl.DiscountPercentageImpl;
+import com.fabretails.discounts.impl.DiscountPercentageImpl;
 
 /**
  * @author b.singh

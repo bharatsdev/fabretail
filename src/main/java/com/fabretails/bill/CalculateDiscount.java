@@ -3,18 +3,18 @@
  */
 package com.fabretails.bill;
 
-import com.fabretails.discounttype.Discount;
-import com.fabretails.discounttype.impl.AmountBasedDiscountImpl;
-import com.fabretails.discounttype.impl.DiscountPercentageImpl;
-import com.fabretails.item.Item;
-import com.fabretails.item.ItemNonGrocery;
-import com.fabretails.users.AffilateCustomer;
-import com.fabretails.users.Customer;
-import com.fabretails.users.EmployeeCustomer;
-import com.fabretails.users.discount.AffiliateUserDiscount;
-import com.fabretails.users.discount.EmployeeDiscount;
-import com.fabretails.users.discount.LoyalCustomerDiscount;
-import com.fabretails.users.discount.ZeroPercentageDiscount;
+import com.fabretails.customers.AffilateCustomer;
+import com.fabretails.customers.Customer;
+import com.fabretails.customers.EmployeeCustomer;
+import com.fabretails.customers.discount.AffiliateUserDiscount;
+import com.fabretails.customers.discount.EmployeeDiscount;
+import com.fabretails.customers.discount.LoyalCustomerDiscount;
+import com.fabretails.customers.discount.ZeroPercentageDiscount;
+import com.fabretails.discounts.Discount;
+import com.fabretails.discounts.impl.AmountBasedDiscountImpl;
+import com.fabretails.discounts.impl.DiscountPercentageImpl;
+import com.fabretails.products.Product;
+import com.fabretails.products.impl.NonGrocery;
 
 /**
  * @author b.singh
@@ -33,12 +33,9 @@ public class CalculateDiscount {
 		return SingletonInstance.INSTANCE;
 	}
 
-	private void netAmountOnBill(FinalBill bill) {
-
-	}
-
-	Discount getCustomerBaseDiscount(Customer c) {
-		DiscountPercentageImpl discountPercentage = null;
+	@SuppressWarnings("unused")
+	Discount getCustomerBasedDiscount(Customer c) {
+		 DiscountPercentageImpl discountPercentage = null;
 		if (c instanceof Customer) {
 
 			if (c.getTotalNoOfYears() > 2) {
@@ -69,39 +66,39 @@ public class CalculateDiscount {
 		return discountPercentage;
 	}
 
-	public double processFinalAmountOnBill(FinalBill bill) {
+	public double processFinalAmountOnBill(Bill bill) {
 
 		proceessBillTotal(bill);
 
-		prcoessPercentageDiscountOverBillItems(bill);
-		prcoessDiscountOverTotal(bill);
+		applyPercentageDiscount(bill);
+		applyDiscountOverFinalBill(bill);
 
 		return 0;
 	}
 
-	private void proceessBillTotal(FinalBill bill) {
+	private void proceessBillTotal(Bill bill) {
 		double netBillAmount = 0;
-		for (Item item : bill.getItemCatalogs()) {
-			netBillAmount += item.getItemAmount();
+		for (Product product : bill.getProductCataglogs()) {
+			netBillAmount += product.getProductAmount();
 		}
 		bill.setTotalAmount(netBillAmount);
 	}
 
-	private void prcoessPercentageDiscountOverBillItems(FinalBill bill) {
-		Discount discount = getCustomerBaseDiscount(bill.getCustomer());
+	private void applyPercentageDiscount(Bill bill) {
+		Discount discount = getCustomerBasedDiscount(bill.getCustomer());
 		double discountedBill = 0;
-		for (Item p : bill.getItemCatalogs()) {
-			if (p instanceof ItemNonGrocery) {
-				discountedBill += discount.calculateDiscount(p.getItemAmount());
+		for (Product product : bill.getProductCataglogs()) {
+			if (product instanceof NonGrocery) {
+				discountedBill += discount.calculateDiscount(product.getProductAmount());
 			} else {
-				discountedBill += p.getItemAmount();
+				discountedBill += product.getProductAmount();
 			}
 		}
 		bill.setAmountAfterDiscount(discountedBill);
 
 	}
 
-	public void prcoessDiscountOverTotal(FinalBill bill) {
+	public void applyDiscountOverFinalBill(Bill bill) {
 
 		Discount discount = new AmountBasedDiscountImpl();
 		bill.setAmountAfterDiscount(discount.calculateDiscount(bill.getAmountAfterDiscount()));

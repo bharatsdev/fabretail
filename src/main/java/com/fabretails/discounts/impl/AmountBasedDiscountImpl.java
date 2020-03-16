@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.fabretails.discounttype.impl;
+package com.fabretails.discounts.impl;
 
-import com.fabretails.discounttype.Discount;
+import com.fabretails.discounts.Discount;
 
 /**
  * @author b.singh
