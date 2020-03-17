@@ -1,4 +1,4 @@
-package com.fabretails.products;
+package com.fabretails.products.impl;
 
 public interface Product {
 		

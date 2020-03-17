@@ -3,8 +3,6 @@
  */
 package com.fabretails.discounts.impl;
 
-import com.fabretails.discounts.Discount;
-
 /**
  * @author b.singh
  *
@@ -15,7 +13,6 @@ public class DiscountByPercentage implements Discount {
 
 	protected DiscountByPercentage(double discount) {
 		this.discountByPercentage = discount;
-		System.out.println(this.discountByPercentage);
 	}
 
 	/**

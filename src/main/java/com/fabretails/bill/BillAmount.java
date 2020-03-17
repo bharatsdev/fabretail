@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fabretails.customers.Customer;
-import com.fabretails.products.Product;
+import com.fabretails.products.impl.Product;
 
+import lombok.ToString;
+
+@ToString
 public class BillAmount {
 	private List<Product> productCataglogs = new ArrayList<>();
 
-	CalculateDiscount calculateDiscount;
+	private NetBillAmountProcessor netBillAmountProcessor;
 
 	private Customer customer;
 
@@ -19,7 +22,7 @@ public class BillAmount {
 	public BillAmount(Customer customer) {
 		super();
 		this.customer = customer;
-		this.calculateDiscount = CalculateDiscount.getInstance();
+		this.netBillAmountProcessor = NetBillAmountProcessor.getInstance();
 	}
 
 	public void addProductCatalog(Product product) {
@@ -27,7 +30,7 @@ public class BillAmount {
 	}
 
 	public void processDiscountOnBill() {
-		calculateDiscount.calculateNetAmountOnBill(this);
+		netBillAmountProcessor.calculateNetAmountOnBill(this);
 	}
 
 	public List<Product> getProductCataglogs() {
@@ -38,12 +41,12 @@ public class BillAmount {
 		this.productCataglogs = productCataglogs;
 	}
 
-	public CalculateDiscount getCalculateDiscount() {
-		return calculateDiscount;
+	public NetBillAmountProcessor getNetBillAmountProcessor() {
+		return netBillAmountProcessor;
 	}
 
-	public void setCalculateDiscount(CalculateDiscount calculateDiscount) {
-		this.calculateDiscount = calculateDiscount;
+	public void setNetBillAmountProcessor(NetBillAmountProcessor netBillAmountProcessor) {
+		this.netBillAmountProcessor = netBillAmountProcessor;
 	}
 
 	public Customer getCustomer() {

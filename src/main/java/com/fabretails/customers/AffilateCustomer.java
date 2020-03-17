@@ -4,7 +4,7 @@
 package com.fabretails.customers;
 
 /**
- * This class will work as Affilate customer.
+ * This class will work as Affiliate customer.
  * 
  * @author b.singh
  *

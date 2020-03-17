@@ -3,8 +3,6 @@
  */
 package com.fabretails.discounts.impl;
 
-import com.fabretails.discounts.Discount;
-
 /**
  * This Class help in calculation of bill amount after giving the amount
  * discount on bill

@@ -8,9 +8,9 @@ import org.junit.Test;
 import com.fabretails.customers.AffilateCustomer;
 import com.fabretails.customers.Customer;
 import com.fabretails.customers.EmployeeCustomer;
-import com.fabretails.products.Product;
 import com.fabretails.products.impl.Grocery;
 import com.fabretails.products.impl.NonGrocery;
+import com.fabretails.products.impl.Product;
 import com.fabretails.utils.ProductType;
 
 public class BillAmountTest {
@@ -30,7 +30,7 @@ public class BillAmountTest {
 	}
 
 	@Test
-	public void TestProcessDiscountOnBillTest() {
+	public void testProcessDiscountOnBillTest() {
 
 		bill.addProductCatalog(productObject(ProductType.GROCERY.name()));
 		bill.addProductCatalog(productObject(ProductType.NON_GROCERY.name()));
@@ -39,6 +39,19 @@ public class BillAmountTest {
 
 		assertEquals(new Double(190), new Double(bill.getAmountAfterDiscount()));
 		assertEquals(new Double(200), new Double(bill.getNetAmount()));
+	}
+
+	@Test
+	public void testProcessDiscountOnBillByEmploye() {
+
+		// bill.addProductCatalog(productObject(ProductType.GROCERY.name()));
+		bill.addProductCatalog(productObject(ProductType.NON_GROCERY.name()));
+		bill.setCustomer(new EmployeeCustomer());
+
+		bill.processDiscountOnBill();
+
+		assertEquals(new Double(70), new Double(bill.getAmountAfterDiscount()));
+		assertEquals(new Double(100), new Double(bill.getNetAmount()));
 	}
 
 	@Test

@@ -12,29 +12,38 @@ import com.fabretails.customers.discount.AffiliateCustomerDiscount;
 import com.fabretails.customers.discount.EmployeeDiscount;
 import com.fabretails.customers.discount.LoyalCustomerDiscount;
 import com.fabretails.customers.discount.ZeroPercentageDiscount;
-import com.fabretails.discounts.Discount;
+import com.fabretails.discounts.impl.Discount;
 import com.fabretails.discounts.impl.DiscountByAmount;
 import com.fabretails.discounts.impl.DiscountByPercentage;
-import com.fabretails.products.Product;
 import com.fabretails.products.impl.NonGrocery;
+import com.fabretails.products.impl.Product;
 
 /**
- * This class will help in calculating the final bill amount
+ * This class will help in calculating the final bill amount on orderFF
  * 
- * @author b.singh
+ * @author Bharat2010
  *
  */
-public class CalculateDiscount {
+public class NetBillAmountProcessor {
 
-	public CalculateDiscount() {
+	public NetBillAmountProcessor() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public double calculateNetAmountOnBill(BillAmount bill) {
+		System.out.println(bill);
+		proceessBillTotal(bill);
+		applyPercentageDiscount(bill);
+		applyDiscountOverFinalBill(bill);
+		return 0;
 	}
 
 	private static class SingletonInstance {
-		private static final CalculateDiscount INSTANCE = new CalculateDiscount();
+		private static final NetBillAmountProcessor INSTANCE = new NetBillAmountProcessor();
 
 	}
 
-	public static CalculateDiscount getInstance() {
+	public static NetBillAmountProcessor getInstance() {
 		return SingletonInstance.INSTANCE;
 	}
 
@@ -69,13 +78,6 @@ public class CalculateDiscount {
 
 		}
 		return discountPercentage;
-	}
-
-	public double calculateNetAmountOnBill(BillAmount bill) {
-		proceessBillTotal(bill);
-		applyPercentageDiscount(bill);
-		applyDiscountOverFinalBill(bill);
-		return 0;
 	}
 
 	/**
@@ -114,6 +116,6 @@ public class CalculateDiscount {
 
 		Discount discount = new DiscountByAmount();
 		bill.setAmountAfterDiscount(discount.calculateDiscount(bill.getAmountAfterDiscount()));
-
+		System.out.println(bill.getAmountAfterDiscount());
 	}
 }

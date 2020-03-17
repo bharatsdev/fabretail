@@ -3,8 +3,6 @@
  */
 package com.fabretails.products.impl;
 
-import com.fabretails.products.Product;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

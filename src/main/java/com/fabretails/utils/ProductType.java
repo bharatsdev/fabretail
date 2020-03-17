@@ -1,7 +1,7 @@
 package com.fabretails.utils;
 
 /**
- * This Enum is for Proudct Type
+ * This Enum is for Product Type
  * 
  * @author b.singh
  *
