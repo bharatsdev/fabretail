@@ -1,4 +1,4 @@
-# Retails : Calculate Net Bill Amount
+# Retails : Net Bill Amount Calculation
 
 ## Project Description
 This is a retails website repository. Which can be used for calculating the net bill amount. 
