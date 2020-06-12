@@ -11,7 +11,7 @@ This is a retails website repository. Which can be used for calculating the net 
 	  Maven
 	  lombok
 	  Junit
-	  Eclipse  
+	  Eclips/Intellij
 	  
 
 ## Component 
